@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fahim Ahmed - Professional Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+        }
+        .navbar {
+            background-color: #343a40 !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link:hover {
+            color: #1ABC9C !important; /* Changed from blue */
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #1ABC9C, #148F77); /* Changed from blue gradient */
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s forwards;
+            animation-delay: 0.5s;
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s forwards;
+            animation-delay: 1s;
+        }
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInScale 1s forwards;
+            animation-delay: 0.2s;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 2rem;
+            margin: 0 15px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        .social-icons a:nth-child(1) { animation-delay: 1.2s; }
+        .social-icons a:nth-child(2) { animation-delay: 1.4s; }
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: #ffc107;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: #1ABC9C; /* Changed from blue */
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #1ABC9C; /* Changed from blue */
+            border-radius: 2px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+            overflow: hidden; /* For skill bars */
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        .card-header {
+            background-color: #1ABC9C; /* Changed from blue */
+            color: white;
+            font-weight: 600;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 15px 20px;
+        }
+        .card-body {
+            padding: 25px;
+        }
+
+        .skill-category h5 {
+            color: #1ABC9C; /* Changed from blue */
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .skill-item i {
+            margin-right: 10px;
+            color: #28a745; /* Green for checkmark */
+        }
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            margin-top: 5px;
+        }
+        .progress-bar {
+            background-color: #1ABC9C; /* Changed from blue */
+            border-radius: 5px;
+            animation: progressBarFill 1.5s ease-out forwards;
+        }
+        .skill-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .experience-item {
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 30px;
+            border-left: 3px solid #1ABC9C; /* Changed from blue */
+        }
+        .experience-item::before {
+            content: "\f0b1"; /* Briefcase icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: -15px;
+            top: 0;
+            background-color: #1ABC9C; /* Changed from blue */
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 0 0 5px rgba(26, 188, 156, 0.2); /* Changed from blue rgba */
+        }
+        .experience-item h4 {
+            color: #1ABC9C; /* Changed from blue */
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .experience-item h5 {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .experience-item .duration {
+            font-style: italic;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .experience-item ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .experience-item ul li::before {
+            content: "\f00c"; /* Check icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-size: 0.9rem;
+            top: 4px;
+        }
+        .project-item {
+            margin-bottom: 20px;
+        }
+        .project-item h6 {
+            font-weight: 600;
+            color: #343a40;
+        }
+        .project-item .tech {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        .project-item a {
+            color: #1ABC9C; /* Changed from blue */
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .project-item a:hover {
+            text-decoration: underline;
+        }
+
+        .education-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 30px;
+            border-left: 3px solid #6c757d;
+        }
+        .education-item::before {
+            content: "\f19d"; /* Graduation cap icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: -15px;
+            top: 0;
+            background-color: #6c757d;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 0 0 5px rgba(108, 117, 125, 0.2);
+        }
+        .education-item h4 {
+            color: #343a40;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .education-item .institute {
+            color: #1ABC9C; /* Changed from blue */
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .education-item .details {
+            font-style: italic;
+            color: #495057;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        footer .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+        footer .social-icons a:hover {
+            color: #1ABC9C; /* Changed from blue */
+        }
+
+        /* Animations */
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes progressBarFill {
+            from { width: 0%; }
+            to { width: var(--progress-width); } /* Use CSS variable for dynamic width */
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal specific styles */
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .modal-header {
+            background-color: #1ABC9C; /* Changed from blue */
+            color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom: none;
+        }
+        .modal-title {
+            font-weight: 600;
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        .modal-footer {
+            border-top: none;
+            padding: 15px 30px;
+        }
+        .btn-close {
+            filter: invert(1); /* Make close button white */
+        }
+        #summaryLoading {
+            display: none;
+            margin-top: 15px;
+        }
+        #summaryOutput {
+            white-space: pre-wrap; /* Preserve whitespace and line breaks */
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">FAHIM AHMED</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <!-- Replace the src below with your actual image URL https://placehold.co/180x180/1ABC9C/ffffff?text=Your+Image+Here-->
+            <img src="fahim.png" alt="Fahim Ahmed" class="profile-image">
+            <h1>FAHIM AHMED</h1>
+            <p>B.SC in CSE from Bangladesh University of Engineering & Technology (BUET)</p>
+            <div class="social-icons mt-4">
+                <a href="https://github.com/sniperxenocide" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://docs.microsoft.com/en-us/users/fahimahmed-6190/achievements" target="_blank" title="Azure Achievements"><i class="fab fa-microsoft"></i></a>
+                <!-- Add more social icons as needed -->
+            </div>
+            <button id="generateSummaryBtn" class="btn btn-warning btn-lg mt-5 animate-on-scroll">Generate Profile Summary ✨</button>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center section-title animate-on-scroll">Professional Skills</h2>
+            <div class="row">
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="card">
+                        <div class="card-header">
+                            Professional Skills
+                        </div>
+                        <div class="card-body skill-category">
+                            <div class="skill-name">Spring Boot</div>
+                            <div class="progress" role="progressbar" aria-label="Spring Boot" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 85%; --progress-width: 85%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Android Studio</div>
+                            <div class="progress" role="progressbar" aria-label="Android Studio" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 80%; --progress-width: 80%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Microservice</div>
+                            <div class="progress" role="progressbar" aria-label="Microservice" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 80%; --progress-width: 80%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Architecture</div>
+                            <div class="progress" role="progressbar" aria-label="Architecture" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 85%; --progress-width: 85%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">MySql</div>
+                            <div class="progress" role="progressbar" aria-label="MySql" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 90%; --progress-width: 90%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Oracle SQL</div>
+                            <div class="progress" role="progressbar" aria-label="Oracle SQL" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 85%; --progress-width: 85%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">GitHub, Gitlab</div>
+                            <div class="progress" role="progressbar" aria-label="GitHub, Gitlab" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 95%; --progress-width: 95%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="card">
+                        <div class="card-header">
+                            Mid Skills
+                        </div>
+                        <div class="card-body skill-category">
+                            <div class="skill-name">Django</div>
+                            <div class="progress" role="progressbar" aria-label="Django" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 65%; --progress-width: 65%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Flutter</div>
+                            <div class="progress" role="progressbar" aria-label="Flutter" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 60%; --progress-width: 60%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Docker</div>
+                            <div class="progress" role="progressbar" aria-label="Docker" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 55%; --progress-width: 55%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Linux</div>
+                            <div class="progress" role="progressbar" aria-label="Linux" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 50%; --progress-width: 50%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">React JS</div>
+                            <div class="progress" role="progressbar" aria-label="React JS" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 70%; --progress-width: 70%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Firebase</div>
+                            <div class="progress" role="progressbar" aria-label="Firebase" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 60%; --progress-width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="card">
+                        <div class="card-header">
+                            Beginner Skills
+                        </div>
+                        <div class="card-body skill-category">
+                            <div class="skill-name">Data Warehouse</div>
+                            <div class="progress" role="progressbar" aria-label="Data Warehouse" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 40%; --progress-width: 40%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Business Intelligence</div>
+                            <div class="progress" role="progressbar" aria-label="Business Intelligence" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 35%; --progress-width: 35%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Blockchain</div>
+                            <div class="progress" role="progressbar" aria-label="Blockchain" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 30%; --progress-width: 30%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Python ML</div>
+                            <div class="progress" role="progressbar" aria-label="Python ML" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 25%; --progress-width: 25%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">Azure Portal</div>
+                            <div class="progress" role="progressbar" aria-label="Azure Portal" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 50%; --progress-width: 50%;"></div>
+                            </div>
+                            <div class="skill-name mt-3">iOS</div>
+                            <div class="progress" role="progressbar" aria-label="iOS" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 20%; --progress-width: 20%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-5">
+        <div class="container">
+            <h2 class="text-center section-title animate-on-scroll">Professional Experience</h2>
+
+            <!-- Abul Khair Group -->
+            <div class="experience-item animate-on-scroll">
+                <h4>Assistant Manager / Senior Software Engineer</h4>
+                <h5>Company: Abul Khair Group (IT)</h5>
+                <div class="duration">Duration: 15-Dec-2019 to Present (5 Years)</div>
+                <ul>
+                    <li>Understand Business Operation & Implement new Technology & Automation.</li>
+                    <li>Collect Requirement according to Business Needs & Develop In-House Software.</li>
+                </ul>
+                <h6 class="mt-3">Projects:</h6>
+                <div class="project-item">
+                    <h6>1. Web Pivot Table JS Library.</h6>
+                    <p>Dynamic Table Generation with Pivot & Filter Functionality.</p>
+                    <p class="tech">Technology: Html, CSS, JS, JQuery, Bootstrap, Fontawesome.</p>
+                    <a href="https://sniperxenocide.github.io/Web-Pivot-Table-JS/" target="_blank">Demo Link <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="project-item">
+                    <h6>2. Marketing Employee Payroll System on Monthly Avg Sales & Grade.</h6>
+                    <p class="tech">Technology: Backend - Spring Boot, Frontend - Thymeleaf, Database-MySql, MSSql</p>
+                </div>
+                <div class="project-item">
+                    <h6>3. Sales Order Automation</h6>
+                    <p class="tech">Technology: Backend - Microservice Spring Boot, MobileApp - Android, Frontend - Thymeleaf, Database-MySql, Oracle</p>
+                </div>
+                <div class="project-item">
+                    <h6>4. GitLab Local Server Installation.</h6>
+                    <p class="tech">Server - CentOS7</p>
+                </div>
+                <div class="project-item">
+                    <h6>5. WhatsApp Messaging API integration with Spring Boot application.</h6>
+                </div>
+                <div class="project-item">
+                    <h6>6. Brand Promoter Survey Operation Tracking Application.</h6>
+                    <p class="tech">Technology: Backend - Spring Boot, MobileApp - Android, Frontend - Thymeleaf, Database-MySql</p>
+                </div>
+                <div class="project-item">
+                    <h6>7. Coffee Machine Service Support Ticketing System Application.</h6>
+                    <p class="tech">Technology: Backend - Spring Boot, MobileApp - Android, Frontend - ReactJS, Database-MySql</p>
+                </div>
+            </div>
+
+            <!-- Infosapex Limited -->
+            <div class="experience-item animate-on-scroll">
+                <h4>Software Engineer</h4>
+                <h5>Company: Infosapex Limited</h5>
+                <div class="duration">Duration: 01-Nov-2018 to 10-Dec-2019 (1 Year)</div>
+                <h6 class="mt-3">Projects:</h6>
+                <div class="project-item">
+                    <h6>1. Web Application for Online Booking Platform (Hotel, Flight, Bus).</h6>
+                    <p class="tech">Technology: Backend - Django, Frontend JS, JQuery, Database-PostgreSql</p>
+                </div>
+                <div class="project-item">
+                    <h6>2. Android Mobile Application for Online Booking Platform (Hotel, Flight, Bus).</h6>
+                    <p class="tech">Technology: Flutter</p>
+                </div>
+                <div class="project-item">
+                    <h6>3. Paperless Meeting Solution with Mobile App.</h6>
+                    <p class="tech">Technology: Android Studio, XCode</p>
+                </div>
+                <div class="project-item">
+                    <h6>4. Order Creation & Invoice Creation process Automation.</h6>
+                    <p class="tech">Technology: UiPath (Robotic Process Automation)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center section-title animate-on-scroll">Educational Background</h2>
+
+            <div class="education-item animate-on-scroll">
+                <h4>B.Sc in Computer Science & Engineering</h4>
+                <div class="institute">Institute: Bangladesh University of Engineering & Technology</div>
+                <div class="details">Duration: 2014-2018 | Completion Date: October 22, 2018 | CGPA: 3.44</div>
+                <h6 class="mt-3">Academic Thesis:</h6>
+                <p>Predicting the Acceptability of a Code Review Request at The Development Phase using Machine Learning & Data Mining</p>
+                <p class="details">Supervisor: Dr. Anindya Iqbal, Associate Professor, Dept. of CSE, BUET</p>
+            </div>
+
+            <div class="education-item animate-on-scroll">
+                <h4>Higher Secondary School Certificate</h4>
+                <div class="institute">Institute: Ispahani Public School & College, Chittagong</div>
+                <div class="details">Session 2012-2013</div>
+            </div>
+
+            <div class="education-item animate-on-scroll">
+                <h4>Secondary School Certificate</h4>
+                <div class="institute">Institute: Mirza Ahmed Ispahani High School, Chittagong</div>
+                <div class="details">Session 2010-2011 | GPA: 5.00</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container text-center">
+            <h2 class="section-title animate-on-scroll">Get In Touch</h2>
+            <p class="lead animate-on-scroll">Feel free to reach out to me!</p>
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-6 animate-on-scroll">
+                    <div class="card p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-envelope fa-2x text-primary mb-2"></i>
+                            <h5>Email</h5>
+                            <p>fahim.dev.se@gmail.com</p>
+                        </div>
+                        <div class="mb-3">
+                            <i class="fas fa-phone fa-2x text-primary mb-2"></i>
+                            <h5>Phone</h5>
+                            <p>01521220336</p>
+                        </div>
+                        <div class="mb-3">
+                            <i class="fas fa-calendar-alt fa-2x text-primary mb-2"></i>
+                            <h5>Date of Birth</h5>
+                            <p>11 January, 1995</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Fahim Ahmed. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="https://github.com/sniperxenocide" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://docs.microsoft.com/en-us/users/fahimahmed-6190/achievements" target="_blank" title="Azure Achievements"><i class="fab fa-microsoft"></i></a>
+                <!-- Add more social icons if available -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Summary Modal -->
+    <div class="modal fade" id="summaryModal" tabindex="-1" aria-labelledby="summaryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="summaryModalLabel">AI-Generated Profile Summary ✨</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="summaryLoading" class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Generating summary...</p>
+                    </div>
+                    <div id="summaryOutput"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a.nav-link').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                }
+                );
+            }, observerOptions);
+
+            animateOnScrollElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Animate progress bars on scroll
+            const skillBars = document.querySelectorAll('.progress-bar');
+            const skillObserverOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5 // Trigger when 50% of the element is visible
+            };
+
+            const skillObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBar = entry.target;
+                        const width = progressBar.style.getPropertyValue('--progress-width');
+                        progressBar.style.width = width; // Apply the width to trigger animation
+                        observer.unobserve(progressBar); // Stop observing once animated
+                    }
+                });
+            }, skillObserverOptions);
+
+            skillBars.forEach(bar => {
+                skillObserver.observe(bar);
+            });
+
+            // Gemini API Integration for Profile Summary
+            const generateSummaryBtn = document.getElementById('generateSummaryBtn');
+            const summaryModal = new bootstrap.Modal(document.getElementById('summaryModal'));
+            const summaryLoading = document.getElementById('summaryLoading');
+            const summaryOutput = document.getElementById('summaryOutput');
+
+            generateSummaryBtn.addEventListener('click', async () => {
+                summaryOutput.innerHTML = ''; // Clear previous summary
+                summaryLoading.style.display = 'block'; // Show loading spinner
+                summaryModal.show(); // Show the modal
+
+                // Extract relevant content from the page
+                const name = document.querySelector('.hero-section h1').innerText;
+                const designation = document.querySelector('.hero-section p').innerText;
+
+                let skillsText = 'Skills:\n';
+                document.querySelectorAll('.skill-category .skill-name').forEach(skill => {
+                    skillsText += `- ${skill.innerText}\n`;
+                });
+
+                let experienceText = 'Professional Experience:\n';
+                document.querySelectorAll('.experience-item').forEach(expItem => {
+                    const title = expItem.querySelector('h4')?.innerText || '';
+                    const company = expItem.querySelector('h5')?.innerText || '';
+                    const duration = expItem.querySelector('.duration')?.innerText || '';
+                    experienceText += `\n${title} at ${company} (${duration})\n`;
+                    expItem.querySelectorAll('ul li').forEach(li => {
+                        experienceText += `- ${li.innerText}\n`;
+                    });
+                    expItem.querySelectorAll('.project-item').forEach(proj => {
+                        const projTitle = proj.querySelector('h6')?.innerText || '';
+                        const projTech = proj.querySelector('.tech')?.innerText || '';
+                        experienceText += `  Project: ${projTitle} (${projTech})\n`;
+                    });
+                });
+
+                let educationText = 'Educational Background:\n';
+                document.querySelectorAll('.education-item').forEach(eduItem => {
+                    const degree = eduItem.querySelector('h4')?.innerText || '';
+                    const institute = eduItem.querySelector('.institute')?.innerText || '';
+                    const details = eduItem.querySelector('.details')?.innerText || '';
+                    educationText += `\n${degree} from ${institute} (${details})\n`;
+                    const thesis = eduItem.querySelector('p')?.innerText || '';
+                    if (thesis) {
+                        educationText += `  Academic Thesis: ${thesis}\n`;
+                    }
+                });
+
+                const fullProfileText = `
+                    Name: ${name}
+                    ${designation}
+
+                    ${skillsText}
+
+                    ${experienceText}
+
+                    ${educationText}
+                `;
+
+                const prompt = `Based on the following professional portfolio information, generate a concise (2-3 paragraphs) and impactful professional summary for Fahim Ahmed. Highlight key skills, experience, and achievements.
+
+                ${fullProfileText}
+                `;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        summaryOutput.innerText = text;
+                    } else {
+                        summaryOutput.innerText = 'Could not generate summary. Please try again.';
+                        console.error('Unexpected API response structure:', result);
+                    }
+                } catch (error) {
+                    summaryOutput.innerText = 'An error occurred while generating the summary. Please try again later.';
+                    console.error('Error calling Gemini API:', error);
+                } finally {
+                    summaryLoading.style.display = 'none'; // Hide loading spinner
+                }
+            });
+        });
+    </script>
+</body>
+</html>
